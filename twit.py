@@ -61,8 +61,7 @@ df = pd.DataFrame([
     {
         "Date":     pd.to_datetime(t.created_at).strftime("%Y-%m-%d %H:%M:%S"),
         "Link":     f"https://twitter.com/{USERNAME}/status/{t.id}",
-        "Type":     "RT" if any(ref.type == "retweeted" for ref in (t.referenced_tweets or []))
-                   else "Tweet",
+        "Type":     "Retweet" if t.text.startswith("RT @") else "Tweet",
         "Tweet":    t.text,
         "Likes":    t.public_metrics["like_count"],
         "Retweets": t.public_metrics["retweet_count"],
